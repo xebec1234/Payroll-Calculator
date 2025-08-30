@@ -26,24 +26,43 @@ It also provides a **donut chart visualization** for a clear breakdown of Take-H
 
 ## 🛠️ Project Structure
 payrollCalculator/
+
 │
+
 ├── Source Packages/
+
 │   ├── <default package>/
+
 │   │   └── MainJFrame.java        # Main GUI frame of the application
+
 │   │
+
 │   ├── image/
+
 │   │   └── screenshot.png         # Sample screenshot of the application
+
 │   │
+
 │   ├── myapp.chart/
+
 │   │   └── PayrollChart.java      # Handles payroll chart visualization
+
 │   │
+
 │   ├── myapp.model/
+
 │   │   └── Employee.java          # Employee model (data structure)
+
 │   │
+
 │   ├── myapp.service/
+
 │   │   └── PayrollCalculator.java # Core payroll calculation logic
+
 │   │
+
 │   └── myapp.ui/
+
 │       └── NeumorphicPanel.java   # Custom UI panel with neumorphism design
 
 
