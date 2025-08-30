@@ -15,6 +15,7 @@ import java.awt.*;
 
 import myapp.model.Employee;
 import myapp.service.PayrollCalculator;
+import myapp.chart.PayrollChart;
 
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -119,6 +120,7 @@ public class MainJFrame extends javax.swing.JFrame {
         resultName = new javax.swing.JLabel();
         resultDept = new javax.swing.JLabel();
         calculate = new javax.swing.JButton();
+        chartContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -270,6 +272,19 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        chartContainer.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout chartContainerLayout = new javax.swing.GroupLayout(chartContainer);
+        chartContainer.setLayout(chartContainerLayout);
+        chartContainerLayout.setHorizontalGroup(
+            chartContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        chartContainerLayout.setVerticalGroup(
+            chartContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout neumorphicPanel4Layout = new javax.swing.GroupLayout(neumorphicPanel4);
         neumorphicPanel4.setLayout(neumorphicPanel4Layout);
         neumorphicPanel4Layout.setHorizontalGroup(
@@ -340,14 +355,16 @@ public class MainJFrame extends javax.swing.JFrame {
                             .addComponent(totalDeductionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                             .addComponent(totalTakeHomePayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(57, 57, 57))
-                    .addGroup(neumorphicPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(resultName, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, neumorphicPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(resultDept, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(119, 119, 119)))
+                        .addGap(119, 119, 119))
+                    .addGroup(neumorphicPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(neumorphicPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(resultName, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                            .addComponent(chartContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -408,7 +425,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(resultName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(resultDept)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(chartContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
                 .addGroup(neumorphicPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(totalDeductionLabel))
@@ -475,6 +494,14 @@ public class MainJFrame extends javax.swing.JFrame {
         double totalDeduction = calc.calculateTotalDeductions(emp);
         double takehomePay = calc.calculateTakeHomePay(emp);
         
+        JPanel chart = PayrollChart.createHalfDonut(takehomePay, totalDeduction - emp.getLate(), emp.getLate());
+        
+        chartContainer.removeAll();                
+        chartContainer.setLayout(new BorderLayout());
+        chartContainer.add(chart, BorderLayout.CENTER);
+        chartContainer.revalidate();
+        chartContainer.repaint();
+        
         resultName.setText(emp.getName());
         resultDept.setText(emp.getDepartment());
         philhealth.setText(String.valueOf(emp.getPhilhealth()));
@@ -523,6 +550,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calculate;
+    private javax.swing.JPanel chartContainer;
     private javax.swing.JComboBox<String> department;
     private javax.swing.JTextField employeeName;
     private javax.swing.Box.Filler filler1;
