@@ -470,6 +470,8 @@ public class MainJFrame extends javax.swing.JFrame {
        emp.setLate(Integer.parseInt(late.getText()));
         
         PayrollCalculator calc = new PayrollCalculator();
+        calc.computeDeductions(emp);
+        
         double totalDeduction = calc.calculateTotalDeductions(emp);
         double takehomePay = calc.calculateTakeHomePay(emp);
         
@@ -478,6 +480,7 @@ public class MainJFrame extends javax.swing.JFrame {
         philhealth.setText(String.valueOf(emp.getPhilhealth()));
         pagibig.setText(String.valueOf(emp.getPagibig()));
         sss.setText(String.valueOf(emp.getSss()));
+        late.setText(String.valueOf(emp.getLate()));
         tax.setText(String.valueOf(emp.getTax()));
         totalDeductionLabel.setText(String.valueOf(totalDeduction));
         totalTakeHomePayLabel.setText(String.valueOf(takehomePay));

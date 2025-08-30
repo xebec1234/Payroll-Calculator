@@ -15,7 +15,7 @@ import javax.swing.*;
 public class NeumorphicPanel extends JPanel {
     
        public NeumorphicPanel() {
-        setOpaque(false); // We'll paint our own background
+        setOpaque(false);
     }
 
     @Override
@@ -25,12 +25,11 @@ public class NeumorphicPanel extends JPanel {
 
         int width = getWidth();
         int height = getHeight();
-        int arc = 100; // corner radius
+        int arc = 100; 
 
         // Background color
         Color baseColor = new Color(255, 255, 255);
 
-        // --- Simulated "neumorphic" shadows ---
         // --- Dark shadow (bottom-right) ---
         g2.setColor(new Color(163, 177, 198, 100));
         g2.fillRoundRect(6, 6, width - 6, height - 6, arc, arc);

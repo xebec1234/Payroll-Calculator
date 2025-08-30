@@ -11,8 +11,8 @@ package myapp.model;
 public class Employee {
     private String name;
     private String department;
-    
     private double salary;
+    
     private double philhealth;
     private double pagibig;
     private double sss;
@@ -57,5 +57,4 @@ public class Employee {
         return tax;
     }
         
-    
 }
