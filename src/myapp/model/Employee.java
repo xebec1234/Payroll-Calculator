@@ -35,7 +35,7 @@ public class Employee {
         return salary;
     }
     
-    public void setPhilhealt(double philhealth) { this.philhealth = philhealth; }
+    public void setPhilhealth(double philhealth) { this.philhealth = philhealth; }
     public void setPagibig(double pagibig) { this.pagibig = pagibig; }
     public void setSss(double sss) { this.sss = sss; }
     public void setLate(int late) { this.late = late; }

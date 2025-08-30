@@ -13,6 +13,9 @@
 import javax.swing.*;
 import java.awt.*;
 
+import myapp.model.Employee;
+import myapp.service.PayrollCalculator;
+
 public class MainJFrame extends javax.swing.JFrame {
 
     /**
@@ -111,8 +114,8 @@ public class MainJFrame extends javax.swing.JFrame {
         tax = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        totalDeduction = new javax.swing.JLabel();
-        totalTakeHomePay = new javax.swing.JLabel();
+        totalDeductionLabel = new javax.swing.JLabel();
+        totalTakeHomePayLabel = new javax.swing.JLabel();
         resultName = new javax.swing.JLabel();
         resultDept = new javax.swing.JLabel();
         calculate = new javax.swing.JButton();
@@ -235,17 +238,17 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Take Home Pay:");
 
-        totalDeduction.setBackground(new java.awt.Color(255, 255, 255));
-        totalDeduction.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        totalDeduction.setForeground(new java.awt.Color(0, 0, 0));
-        totalDeduction.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        totalDeduction.setText("0");
+        totalDeductionLabel.setBackground(new java.awt.Color(255, 255, 255));
+        totalDeductionLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        totalDeductionLabel.setForeground(new java.awt.Color(0, 0, 0));
+        totalDeductionLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        totalDeductionLabel.setText("0");
 
-        totalTakeHomePay.setBackground(new java.awt.Color(255, 255, 255));
-        totalTakeHomePay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        totalTakeHomePay.setForeground(new java.awt.Color(0, 0, 0));
-        totalTakeHomePay.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        totalTakeHomePay.setText("0");
+        totalTakeHomePayLabel.setBackground(new java.awt.Color(255, 255, 255));
+        totalTakeHomePayLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        totalTakeHomePayLabel.setForeground(new java.awt.Color(0, 0, 0));
+        totalTakeHomePayLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        totalTakeHomePayLabel.setText("0");
 
         resultName.setBackground(new java.awt.Color(255, 255, 255));
         resultName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -334,8 +337,8 @@ public class MainJFrame extends javax.swing.JFrame {
                                 .addGap(28, 28, 28)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(neumorphicPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(totalDeduction, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                            .addComponent(totalTakeHomePay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(totalDeductionLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                            .addComponent(totalTakeHomePayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(57, 57, 57))
                     .addGroup(neumorphicPanel4Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -408,11 +411,11 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(neumorphicPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(totalDeduction))
+                    .addComponent(totalDeductionLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(neumorphicPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(totalTakeHomePay))
+                    .addComponent(totalTakeHomePayLabel))
                 .addGap(288, 288, 288))
         );
 
@@ -462,7 +465,22 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_employeeNameActionPerformed
 
     private void calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateActionPerformed
-        // TODO add your handling code here:
+        Employee emp  = new Employee(employeeName.getText(), (String) department.getSelectedItem(), Double.parseDouble(salary.getText()) );
+        
+       emp.setLate(Integer.parseInt(late.getText()));
+        
+        PayrollCalculator calc = new PayrollCalculator();
+        double totalDeduction = calc.calculateTotalDeductions(emp);
+        double takehomePay = calc.calculateTakeHomePay(emp);
+        
+        resultName.setText(emp.getName());
+        resultDept.setText(emp.getDepartment());
+        philhealth.setText(String.valueOf(emp.getPhilhealth()));
+        pagibig.setText(String.valueOf(emp.getPagibig()));
+        sss.setText(String.valueOf(emp.getSss()));
+        tax.setText(String.valueOf(emp.getTax()));
+        totalDeductionLabel.setText(String.valueOf(totalDeduction));
+        totalTakeHomePayLabel.setText(String.valueOf(takehomePay));
     }//GEN-LAST:event_calculateActionPerformed
 
     /**
@@ -529,7 +547,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField salary;
     private javax.swing.JTextField sss;
     private javax.swing.JTextField tax;
-    private javax.swing.JLabel totalDeduction;
-    private javax.swing.JLabel totalTakeHomePay;
+    private javax.swing.JLabel totalDeductionLabel;
+    private javax.swing.JLabel totalTakeHomePayLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,30 +12,41 @@ package myapp.service;
 import myapp.model.Employee;
 
 public class PayrollCalculator {
-    
-    public double calculateTotalDeductions( Employee emp) {
-        double salary = emp.getSalary();
-        
-        double philhealth = emp.getPhilhealth();
-        philhealth = (salary * 0.05) / 2;
-        
-        double pagibig = emp.getPagibig();
-        pagibig = 10000 * 0.02;
-        
-        double sss = emp.getSss();
-        if (sss > 35000) {
-            sss = 35000 * 0.05;
-        } else {
-            sss= salary * 0.05;
-        }
-        
-        double totalContribution = pagibig + sss + philhealth;
-        double totalTaxableIncome = salary - totalContribution;
-        
-        double totalTax = emp.getTax();
-        return  totalTaxableIncome / totalTaxableIncome;
+    //contributions deductions
+     public double philhealthDeduction(Employee emp) {
+        return (emp.getSalary() * 0.05) / 2;
      }
-    
+     
+     public double pagibigDeduction(Employee emp) {
+        return  10000 * 0.02;
+     }
+     
+     public double sssDeduction(Employee emp) {
+        double salary = emp.getSalary();
+            if (salary > 35000) {
+               return salary = 35000 * 0.05;
+            } else {
+               return salary = salary * 0.05;
+            }
+     }
+     
+     //late deductions
+     public double lateDeduction(Employee emp) {
+        return emp.getLate() * 100;
+    }
+     
+     //taxable
+     public double taxDeductions(Employee emp) {
+         double taxableIncome = (emp.getSalary() - philhealthDeduction(emp) - pagibigDeduction(emp) - sssDeduction(emp)) / 12;
+         return emp.getSalary() - taxableIncome;
+     }
+     
+     //total Deductions
+    public double calculateTotalDeductions( Employee emp) {
+        return  taxDeductions(emp) +  philhealthDeduction(emp) + pagibigDeduction(emp) + sssDeduction(emp);
+     }
+     
+    //total take home pay
     public double calculateTakeHomePay(Employee emp) {
         return emp.getSalary() - calculateTotalDeductions(emp);
     }

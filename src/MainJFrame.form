@@ -176,8 +176,8 @@
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="totalDeduction" pref="123" max="32767" attributes="0"/>
-                                  <Component id="totalTakeHomePay" max="32767" attributes="0"/>
+                                  <Component id="totalDeductionLabel" pref="123" max="32767" attributes="0"/>
+                                  <Component id="totalTakeHomePayLabel" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                           </Group>
@@ -270,12 +270,12 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="totalDeduction" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalDeductionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="totalTakeHomePay" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="totalTakeHomePayLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="288" max="-2" attributes="0"/>
                   </Group>
@@ -580,7 +580,7 @@
                 <Property name="text" type="java.lang.String" value="Take Home Pay:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="totalDeduction">
+            <Component class="javax.swing.JLabel" name="totalDeductionLabel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -595,7 +595,7 @@
                 <Property name="text" type="java.lang.String" value="0"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="totalTakeHomePay">
+            <Component class="javax.swing.JLabel" name="totalTakeHomePayLabel">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
