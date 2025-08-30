@@ -6,7 +6,7 @@ It also provides a **donut chart visualization** for a clear breakdown of Take-H
 ---
 
 ## 📸 Preview  
-![Payroll Calculator GUI](src/images/screenshot.png)  
+![Payroll Calculator GUI](src/image/screenshot.png)  
 
 ---
 
